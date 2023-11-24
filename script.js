@@ -45,16 +45,12 @@ function drawKnight() {
 drawKnight();
 
 function moveKnight(x, y) {
-  let tempPos = [curPos[0], curPos[1]];
-  if (currectMove(x, y)) {
-    chessBoard[x][y] = chessBoard[tempPos[0]][tempPos[1]];
-    curPos = [x, y];
-    chessBoard[tempPos[0]][tempPos[1]] = "";
-    drawKnight();
-  } else {
-    alert("Wrong move!");
-  }
-  console.log(chessBoard);
+  let tempPos = [curPos[0], curPos[1]]; // tree shaked
+  chessBoard[x][y] = chessBoard[tempPos[0]][tempPos[1]];
+  curPos = [x, y];
+  chessBoard[tempPos[0]][tempPos[1]] = "";
+  drawKnight();
+  // console.log(chessBoard);
 }
 
 function currectMove(x, y) {
@@ -65,7 +61,7 @@ function currectMove(x, y) {
     [curPos[0] - 2, curPos[1] - 1], // x first
     [curPos[0] + 1, curPos[1] + 2],
     [curPos[0] - 1, curPos[1] + 2],
-    [curPos[0] + 1, curPos[1] + 2],
+    [curPos[0] + 1, curPos[1] - 2], // corrected
     [curPos[0] - 1, curPos[1] - 2],
   ];
 
@@ -74,7 +70,7 @@ function currectMove(x, y) {
       return true;
     }
   }
-  return true
+  return false;
 }
 
 container.onclick = function (evt) {
